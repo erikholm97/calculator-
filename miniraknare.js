@@ -21,15 +21,7 @@
         
         return result
       }
-      const checkDecimal = (decimalNumber) =>{
-        
-        if(decimalNumber.includes("..")){
-          return false;
-        }
-        else{
-          return true;
-        }
-      }
+      
        
     keys.addEventListener('click', e => {
        if (e.target.matches('button')) {
@@ -50,11 +42,26 @@
             else {
                 display.textContent = displayedNum + keyContent
             }
+          }
+          else{
+
+          if(displayedNum.slice(-1) != parseInt(displayedNum.slice(-1))){ 
+             return
+          }
+        
+          if(displayedNum.match(/[+-]?\d+(\.\d+)?/g).length === 2){
+            return
+          }
         }
+          
         if (action === 'decimal') { // Om action är decimal. 
-            display.textContent = displayedNum + '.' // Nummret som visas får ett decimal tecken.
-            bool = checkDecimal(display.textContent)
-            console.log(bool)
+             // Nummret som visas får ett decimal tecken.
+            if (action === 'decimal') { // Om action är decimal. 
+             
+              if(displayedNum.match(/[+-]?\d+(\.\d+)?/g).pop().indexOf('.') != -1) { return } 
+              
+              display.textContent = displayedNum + '.' // Nummret som visas får ett decimal tecken. 
+          }
         }
         if(action === 'clear'){
             console.log("pressed clear");
@@ -86,10 +93,10 @@
         console.log('clear key!')
         }
 
-        if (action === 'calculate') {
+        if (action === 'calculate' || action != 'clear') {
         console.log('equal key!')
         const values = displayedNum.match(/[+-]?\d+(\.\d+)?/g).map(n => parseFloat(n));
-        console.log(values)
+        if(values.length < 2) return
         display.textContent = calculate(values[0], values[1]);
         console.log(display.textContent)
         
@@ -97,7 +104,7 @@
         }
         
     
-    }
+      }
     
 })
        
