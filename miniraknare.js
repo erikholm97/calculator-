@@ -39,9 +39,12 @@ keys.addEventListener("click", e => {
       if (displayedNum.slice(-1) != parseInt(displayedNum.slice(-1))) {
         return;
       }
-
-      if (displayedNum.match(/[+-]?\d+(\.\d+)?/g).length === 2) {
-        return;
+      
+      if(action != "calculate" && action != "clear") {
+        console.log(action)
+        if (displayedNum.match(/[+-]?\d+(\.\d+)?/g).length === 2) {
+          return;
+        }
       }
     }
 
@@ -89,7 +92,7 @@ keys.addEventListener("click", e => {
       console.log("clear key!");
     }
 
-    if (action === "calculate" || action != "clear") {
+    if (action === "calculate") {
       console.log("equal key!");
       const values = displayedNum
         .match(/[+-]?\d+(\.\d+)?/g)
