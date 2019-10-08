@@ -5,13 +5,16 @@ let operator = null;
 
 const calculate = (n1, n2) => {
   let result = "";
-  console.log(n1);
-  console.log(n2);
-  console.log(operator);
+  
   if (operator === "add") {
-    result = n1 + n2;
+    
   } else if (operator === "subtract") {
-    result = n1 - n2;
+    console.log(n2)
+    
+    
+    console.log(n2);
+    result = n1 - Math.abs(n2);
+    console.log(result)
   } else if (operator === "multiply") {
     result = n1 * n2;
   } else if (operator === "divide") {
@@ -99,6 +102,7 @@ keys.addEventListener("click", e => {
         .map(n => parseFloat(n));
       if (values.length < 2) return;
       display.textContent = calculate(values[0], values[1]);
+      
       console.log(display.textContent);
     }
   }
